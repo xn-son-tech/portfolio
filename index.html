@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Son Hoang Xuan | .NET Developer & AI Engineer Portfolio</title>
+    <meta name="description"
+        content="Personal portfolio of Son Hoang Xuan - Senior .NET Developer & Master of Science in AI candidate. Explore enterprise systems, AIoT integrations, deep learning audio processors, and fintech tools.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Canvas background for AI networking effect -->
+    <canvas id="particles-canvas"></canvas>
+
+    <!-- Top Terminal Navigation Bar -->
+    <header class="terminal-header" id="terminal-nav">
+        <div class="terminal-header-top">
+            <div class="terminal-dots">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+            </div>
+            <div class="terminal-title">son_hoang_xuan@:~</div>
+        </div>
+        <div class="terminal-body-nav">
+            <div class="terminal-prompt-line">
+                <span class="prompt-user">guest@</span>:<span class="prompt-path">~</span>$ <span id="typing-command"
+                    class="typing-text"></span><span class="cursor">_</span>
+            </div>
+            <nav class="nav-links">
+                <a href="#home" class="nav-item" data-cmd="cd /home" id="nav-home-btn"><span
+                        class="cmd-prefix">cd</span> /home</a>
+                <a href="#about" class="nav-item" data-cmd="cd /about-me" id="nav-about-btn"><span
+                        class="cmd-prefix">cd</span> /about-me</a>
+                <a href="#skills" class="nav-item" data-cmd="cd /skills" id="nav-skills-btn"><span
+                        class="cmd-prefix">cd</span> /skills</a>
+                <a href="#projects" class="nav-item" data-cmd="cd /projects" id="nav-projects-btn"><span
+                        class="cmd-prefix">cd</span> /projects</a>
+                <a href="#experience" class="nav-item" data-cmd="cd /experience" id="nav-exp-btn"><span
+                        class="cmd-prefix">cd</span> /experience</a>
+                <a href="#contact" class="nav-item" data-cmd="cd /contact" id="nav-contact-btn"><span
+                        class="cmd-prefix">cd</span> /contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero-section">
+            <div class="container hero-container">
+                <div class="hero-badge">
+                    <span class="badge-dot"></span> Open to AI & .NET Consulting
+                </div>
+                <h1 class="hero-title">
+                    Son Hoang Xuan
+                </h1>
+                <h2 class="hero-subtitle">
+                    <span class="gradient-text-dotnet">.NET Developer</span> & <span class="gradient-text-ai">AI
+                        Engineer</span>
+                </h2>
+                <p class="hero-tagline">
+                    Bridging the gap between robust enterprise architectures (.NET Core / C#) and intelligent artificial
+                    systems (Machine Leanring, Deep Learning & AIoT). Engineering high-performance backend platforms
+                    integrated with smart data analytics.
+                </p>
+                <div class="hero-actions">
+                    <a href="#projects" class="btn btn-primary" id="btn-hero-projects">
+                        <i class="fa-solid fa-code"></i> Explore Projects
+                    </a>
+                    <a href="Resume .NET - Son Hoang Xuan.pdf" target="_blank" class="btn btn-secondary"
+                        id="btn-hero-resume">
+                        <i class="fa-solid fa-file-pdf"></i> Download CV (.NET)
+                    </a>
+                </div>
+                <div class="hero-scroll-indicator">
+                    <span class="scroll-mouse"><span class="scroll-wheel"></span></span>
+                    <span>Scroll Down</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Me Section -->
+        <section id="about" class="about-section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-number">01.</span>
+                    <h2 class="section-title">About Me</h2>
+                </div>
+                <div class="about-grid">
+                    <div class="about-info">
+                        <p>
+                            Hello! I am a passionate Software Engineer with a solid background in enterprise-scale
+                            backend application development using the <strong>.NET ecosystem (C#, ASP.NET
+                                Core)</strong>, combined with a <strong>Master's degree in Artificial Intelligence
+                                (AI)</strong>.
+                        </p>
+                        <p>
+                            My professional goal is to seamlessly integrate machine learning models and intelligent data
+                            processing algorithms into core corporate applications, automating complex business logic
+                            and driving tangible values.
+                        </p>
+                        <p>
+                            Beyond my core development responsibilities, I actively contribute to the tech community as
+                            a <strong>part-time coding instructor</strong>, training young engineers in OOP principles,
+                            clean architectures, and database design.
+                        </p>
+                        <div class="about-highlights">
+                            <div class="highlight-item">
+                                <span class="highlight-icon"><i class="fa-solid fa-graduation-cap"></i></span>
+                                <div>
+                                    <h4>Master in AI Studies</h4>
+                                    <p>Deep dive in Computer Vision, signal processing, and AIoT</p>
+                                </div>
+                            </div>
+                            <div class="highlight-item">
+                                <span class="highlight-icon"><i class="fa-solid fa-server"></i></span>
+                                <div>
+                                    <h4>Backend Specialist</h4>
+                                    <p>Designing high-concurrency APIs, CMS, and microservices</p>
+                                </div>
+                            </div>
+                            <div class="highlight-item">
+                                <span class="highlight-icon"><i class="fa-solid fa-chalkboard-user"></i></span>
+                                <div>
+                                    <h4>Technical Educator</h4>
+                                    <p>Providing practical coding bootcamps and mentoring students</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="about-visual">
+                        <div class="avatar-card-container">
+                            <div class="avatar-card">
+                                <div class="avatar-border-glow"></div>
+                                <div class="avatar-inner">
+                                    <div class="avatar-img-wrapper">
+                                        <img src="z7927591330340_a6363ccd047bcc53fd812f79e1d3f125.jpg"
+                                            alt="Son Hoang Xuan" class="avatar-img">
+                                    </div>
+                                    <div class="avatar-status">
+                                        <span class="status-pulse"></span> Active coding...
+                                    </div>
+                                    <div class="avatar-details">
+                                        <h3>Son Hoang Xuan</h3>
+                                        <p>Hanoi, Vietnam</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="skills-section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-number">02.</span>
+                    <h2 class="section-title">Skills Matrix</h2>
+                </div>
+                <div class="skills-grid">
+                    <!-- Skills Card 1: .NET Backend -->
+                    <div class="skills-card glass-card" id="skills-card-dotnet">
+                        <div class="skills-card-header">
+                            <i class="fa-solid fa-cubes icon-dotnet"></i>
+                            <h3>Enterprise & .NET Backend</h3>
+                        </div>
+                        <ul class="skills-list">
+                            <li><span>C#, .NET Core 8 / 7 / 6</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 90%"></div>
+                                </div>
+                            </li>
+                            <li><span>ASP.NET Core Web API / MVC</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 90%"></div>
+                                </div>
+                            </li>
+                            <li><span>Entity Framework Core / LINQ</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 85%"></div>
+                                </div>
+                            </li>
+                            <li><span>SQL Server & PostgreSQL</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 85%"></div>
+                                </div>
+                            </li>
+                            <li><span>Clean Architecture / DDD / OData</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 80%"></div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Skills Card 2: AI & Machine Learning -->
+                    <div class="skills-card glass-card" id="skills-card-ai">
+                        <div class="skills-card-header">
+                            <i class="fa-solid fa-brain icon-ai"></i>
+                            <h3>AI & Deep Learning</h3>
+                        </div>
+                        <ul class="skills-list">
+                            <li><span>Python & PyTorch</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 85%"></div>
+                                </div>
+                            </li>
+                            <li><span>Computer Vision</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 80%"></div>
+                                </div>
+                            </li>
+                            <li><span>Machine Learning</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 85%"></div>
+                                </div>
+                            </li>
+                            <li><span>Audio Separation (Open-Unmix)</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 75%"></div>
+                                </div>
+                            </li>
+                            <li><span>OpenAI API & LLM Integration</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 80%"></div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Skills Card 3: Full Stack & System -->
+                    <div class="skills-card glass-card" id="skills-card-fullstack">
+                        <div class="skills-card-header">
+                            <i class="fa-solid fa-laptop-code icon-fs"></i>
+                            <h3>Full-Stack & Integration</h3>
+                        </div>
+                        <ul class="skills-list">
+                            <li><span>FastAPI & Flask (Python)</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 85%"></div>
+                                </div>
+                            </li>
+                            <li><span>React.js / Next.js / Vue.js</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 75%"></div>
+                                </div>
+                            </li>
+                            <li><span>Celery, Redis & RabbitMQ</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 80%"></div>
+                                </div>
+                            </li>
+                            <li><span>Docker & Docker Compose</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 75%"></div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Skills Card 4: Education & Soft Skills -->
+                    <div class="skills-card glass-card" id="skills-card-soft">
+                        <div class="skills-card-header">
+                            <i class="fa-solid fa-people-arrows icon-soft"></i>
+                            <h3>Teaching & Methodology</h3>
+                        </div>
+                        <ul class="skills-list">
+                            <li><span>Technical Instruction & Mentoring</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 90%"></div>
+                                </div>
+                            </li>
+                            <li><span>Agile / Scrum Methodologies</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 80%"></div>
+                                </div>
+                            </li>
+                            <li><span>System Design & Diagrams</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 85%"></div>
+                                </div>
+                            </li>
+                            <li><span>Git & GitHub Actions (CI/CD)</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 80%"></div>
+                                </div>
+                            </li>
+                            <li><span>Sitecore CMS / Directus Headless</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 85%"></div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="projects-section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-number">03.</span>
+                    <h2 class="section-title">Projects Showcase</h2>
+                </div>
+
+                <!-- Projects Filter Bar styled like terminal flags -->
+                <div class="projects-filter-bar">
+                    <span class="filter-prompt">son_hoang_xuan@:~$ ./list_projects.sh</span>
+                    <div class="filter-options">
+                        <button class="filter-btn active" data-filter="all">--all</button>
+                        <button class="filter-btn" data-filter="ai-ml">--ai-ml</button>
+                        <button class="filter-btn" data-filter="dotnet">--dotnet</button>
+                        <button class="filter-btn" data-filter="fsoft">--fsoft-work</button>
+                    </div>
+                </div>
+
+                <div class="projects-container" id="projects-container">
+                    <!-- Featured and minor projects will be loaded dynamically via script.js -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience & Education Section -->
+        <section id="experience" class="experience-section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-number">04.</span>
+                    <h2 class="section-title">Timeline</h2>
+                </div>
+                <div class="timeline">
+                    <!-- Item 1: Master AI -->
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-date">2025 - Present</div>
+                        <div class="timeline-content glass-card">
+                            <h3>Master of Software Engineering in AI</h3>
+                            <h4>FPT School of Business and Technology</h4>
+                            <p>
+                                Researching computer vision, deep learning frameworks, and IoT/AIoT systems. Developing
+                                edge computing traffic routing algorithms and PCA/SVM neural architectures.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Item 2: Freelance Startup & Consulting -->
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-date">2025 - Present</div>
+                        <div class="timeline-content glass-card">
+                            <h3>Fullstack AI & Startup Developer</h3>
+                            <h4>Independent Projects & Consulting</h4>
+                            <p>
+                                Designed and deployed <strong>InvestTool</strong> (FastAPI + Celery + OpenAI API + Redis
+                                + Telegram hooks) and <strong>BSS Audio Splitter</strong> deep learning applications.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Item 3: Programming Instructor -->
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-date">2025 - Present</div>
+                        <div class="timeline-content glass-card">
+                            <h3>Programming Instructor (Part-time)</h3>
+                            <h4>Coding Academies & Universities</h4>
+                            <p>
+                                Lecturing on OOP, data structures, and database management. Mentoring university
+                                students on large-scale flight management system course designs.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Item 4: Fsoft -->
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-date">01/2024 - Present</div>
+                        <div class="timeline-content glass-card">
+                            <h3>Software Engineer (.NET Developer)</h3>
+                            <h4>FPT Software (Fsoft)</h4>
+                            <p>
+                                Coded enterprise backend portals (Porter Airlines, Singapore MOE/MPA, ON.E) utilizing
+                                C#, ASP.NET Core/MVC, SQL Server, Sitecore, and Docker. Automated CI/CD pipelines.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact-section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-number">05.</span>
+                    <h2 class="section-title">Get In Touch</h2>
+                </div>
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <h3>Let's Collaborate on Your Projects!</h3>
+                        <p>
+                            I am always open to discussing new opportunities regarding enterprise .NET backend
+                            consulting, AI/ML model deployment, audio/signal processing algorithms, and coding
+                            mentoring.
+                        </p>
+                        <div class="contact-details-list">
+                            <div class="contact-detail-item">
+                                <span class="icon"><i class="fa-solid fa-envelope"></i></span>
+                                <div>
+                                    <h4>Email Contact</h4>
+                                    <p><a href="mailto:sonhx.dotnet.ai@gmail.com">sonhx.dotnet.ai@gmail.com</a></p>
+                                </div>
+                            </div>
+                            <div class="contact-detail-item">
+                                <span class="icon"><i class="fa-brands fa-linkedin"></i></span>
+                                <div>
+                                    <h4>LinkedIn Profile</h4>
+                                    <p><a href="https://linkedin.com/in/son-hoang-xuan"
+                                            target="_blank">linkedin.com/in/son-hoang-xuan</a></p>
+                                </div>
+                            </div>
+                            <div class="contact-detail-item">
+                                <span class="icon"><i class="fa-brands fa-github"></i></span>
+                                <div>
+                                    <h4>GitHub Profile</h4>
+                                    <p><a href="https://github.com/sonhx-fsoft"
+                                            target="_blank">github.com/sonhx-fsoft</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact-form-container glass-card">
+                        <div class="form-terminal-top">
+                            <span class="term-btn term-close"></span>
+                            <span class="term-btn term-min"></span>
+                            <span class="term-btn term-max"></span>
+                            <span class="term-tab">send_message.sh</span>
+                        </div>
+                        <form id="contact-form" class="contact-form">
+                            <div class="form-group">
+                                <label for="form-name">Sender Name</label>
+                                <input type="text" id="form-name" required placeholder="John Doe">
+                            </div>
+                            <div class="form-group">
+                                <label for="form-email">Sender Email</label>
+                                <input type="email" id="form-email" required placeholder="name@domain.com">
+                            </div>
+                            <div class="form-group">
+                                <label for="form-subject">Message Subject</label>
+                                <input type="text" id="form-subject" required
+                                    placeholder="Collaboration / .NET Consulting / Mentoring...">
+                            </div>
+                            <div class="form-group">
+                                <label for="form-message">Message Content</label>
+                                <textarea id="form-message" rows="5" required
+                                    placeholder="Hi Son, I would like to discuss a project..."></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-submit" id="btn-submit-contact">
+                                <i class="fa-solid fa-paper-plane"></i> Execute Send
+                            </button>
+                        </form>
+                        <div id="form-success-msg" class="form-success-terminal-output hidden">
+                            <span class="success-prefix">guest@:~$</span> ./send_message.sh --success<br>
+                            <span class="success-txt">[INFO] Initiating mail dispatch to
+                                sonhx.dotnet.ai@gmail.com...</span><br>
+                            <span class="success-txt">[OK] Message successfully sent! Thank you, Son will contact you
+                                shortly.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-container">
+            <p>&copy; 2026 Son Hoang Xuan. All Rights Reserved.</p>
+            <p class="footer-designed-by">Designed with <i class="fa-solid fa-heart neon-heart"></i> & Shell commands
+            </p>
+        </div>
+    </footer>
+
+    <!-- Terminal Project Details Modal -->
+    <div id="project-details-modal" class="modal-overlay hidden">
+        <div class="terminal-modal glass-card">
+            <div class="terminal-header-top">
+                <div class="terminal-dots">
+                    <span class="dot red" id="modal-close-dot"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                </div>
+                <div class="terminal-title">son_hoang_xuan@:~/view_project_details.sh</div>
+            </div>
+            <div class="terminal-modal-body">
+                <div class="terminal-prompt-line">
+                    <span class="prompt-user">guest@</span>:<span class="prompt-path">~</span>$
+                    ./view_project_details.sh --id <span id="modal-project-id-arg"></span>
+                </div>
+                <div class="modal-project-content" id="modal-project-content">
+                    <!-- Loaded dynamically via script.js -->
+                </div>
+                <div class="modal-actions">
+                    <button class="btn btn-secondary btn-modal-close" id="btn-modal-close"><i
+                            class="fa-solid fa-square-xmark"></i> Close Terminal</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script file -->
+    <script src="script.js"></script>
+</body>
+
+</html>
