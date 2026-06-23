@@ -365,6 +365,18 @@ document.addEventListener("DOMContentLoaded", () => {
         const currentScale = 1 + pulse;
         heartPoints.scale.set(currentScale, currentScale, currentScale);
 
+        // Animate the text overlay scaling and text-shadow pulsing in sync with the heartbeat
+        const heartTextEl = document.getElementById("heart-text");
+        if (heartTextEl) {
+            const textScale = 1 + pulse * 0.7; // slightly dampened pulse for text readability
+            heartTextEl.style.transform = `scale(${textScale})`;
+            
+            // Dynamic text shadow glow pulse
+            const glowSpread1 = 10 + pulse * 18;
+            const glowSpread2 = 20 + pulse * 28;
+            heartTextEl.style.textShadow = `0 0 ${glowSpread1}px rgba(255, 45, 85, 0.95), 0 0 ${glowSpread2}px rgba(255, 45, 85, 0.6), 0 0 35px rgba(255, 45, 85, 0.35)`;
+        }
+
         // --- B. Camera hover rotation follow ---
         mouse.x += (mouse.rawX * 0.45 - mouse.x) * 0.05;
         mouse.y += (mouse.rawY * 0.35 - mouse.y) * 0.05;
