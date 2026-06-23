@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terminal Admin Panel | Son Hoang Xuan</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Chart.js CDN for interactive graphs -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="admin.css">
+</head>
+
+<body>
+    <!-- Canvas background for consistent particle effect -->
+    <canvas id="particles-canvas"></canvas>
+
+    <!-- 1. SECURE LOGIN SCREEN -->
+    <div id="login-screen" class="login-wrapper">
+        <div class="login-card glass-card">
+            <div class="terminal-header-top">
+                <div class="terminal-dots">
+                    <span class="dot red"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                </div>
+                <div class="terminal-title">sonhx@admin:~</div>
+            </div>
+            <div class="login-body">
+                <div class="auth-alert-badge">
+                    <span class="pulse-red-dot"></span> Authorized personnel only
+                </div>
+                <h2 class="login-title">Access Terminal</h2>
+                <p class="login-subtitle">Enter credentials to unlock administrative diagnostics.</p>
+                
+                <form id="login-form">
+                    <div class="form-group">
+                        <label for="admin-passcode">Password</label>
+                        <input type="password" id="admin-passcode" class="input-terminal" required placeholder="••••••••" autofocus>
+                    </div>
+                    <button type="submit" class="btn btn-auth-submit">
+                        <i class="fa-solid fa-key"></i> Authenticate
+                    </button>
+                </form>
+                <div id="auth-error" class="auth-error-msg"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. DIAGNOSTICS DASHBOARD (Hidden by default) -->
+    <div id="dashboard-screen" class="dashboard-wrapper hidden">
+        <!-- Top Navbar -->
+        <header class="admin-navbar">
+            <div class="navbar-body">
+                <div class="admin-logo">
+                    <i class="fa-solid fa-circle-nodes logo-icon"></i>
+                    <span>sonhx_admin_v1.0.4</span>
+                </div>
+                <div class="navbar-actions">
+                    <a href="index.html" class="btn btn-secondary btn-logout" id="btn-back-home">
+                        <i class="fa-solid fa-home"></i> cd /portfolio
+                    </a>
+                    <button class="btn btn-danger btn-logout" id="btn-logout">
+                        <i class="fa-solid fa-power-off"></i> exit_admin
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main dashboard content -->
+        <main>
+            <div class="admin-title-row">
+                <div>
+                    <h1>Diagnostic Console</h1>
+                    <p style="color:var(--text-secondary);font-size:0.95rem;margin-top:0.3rem;">Real-time diagnostics and visitor statistics feed.</p>
+                </div>
+                <div class="system-status-indicator">
+                    <span class="pulse-green-dot"></span> System Status: Online
+                </div>
+            </div>
+
+            <!-- Stats Overview Card Deck -->
+            <div class="stats-grid">
+                <div class="stat-card glass-card" id="stat-visitors">
+                    <div class="stat-header">
+                        <span>TOTAL VISITORS</span>
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+                    <div class="stat-value" id="dashboard-visitors-count">0</div>
+                    <div class="stat-desc">Accumulated real visits (CounterAPI)</div>
+                </div>
+
+                <div class="stat-card glass-card" id="stat-unique">
+                    <div class="stat-header">
+                        <span>UNIQUE SESSIONS</span>
+                        <i class="fa-solid fa-id-badge"></i>
+                    </div>
+                    <div class="stat-value" id="dashboard-sessions-count">0</div>
+                    <div class="stat-desc">Deduplicated browser sessions (~85%)</div>
+                </div>
+
+                <div class="stat-card glass-card" id="stat-health">
+                    <div class="stat-header">
+                        <span>API STATUS</span>
+                        <i class="fa-solid fa-heartbeat"></i>
+                    </div>
+                    <div class="stat-value">100%</div>
+                    <div class="stat-desc">CounterAPI response rate (normal)</div>
+                </div>
+
+                <div class="stat-card glass-card" id="stat-db">
+                    <div class="stat-header">
+                        <span>SYS LOGS</span>
+                        <i class="fa-solid fa-database"></i>
+                    </div>
+                    <div class="stat-value">OK</div>
+                    <div class="stat-desc">Visitor audit logs synced & active</div>
+                </div>
+            </div>
+
+            <!-- Interactive Graph Deck -->
+            <div class="charts-grid">
+                <div class="chart-card glass-card">
+                    <h3><i class="fa-solid fa-chart-line"></i> Visitor Traffic Timeline (7 Days)</h3>
+                    <div class="chart-wrapper">
+                        <canvas id="trafficChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="secondary-charts">
+                    <div class="chart-card glass-card">
+                        <h3><i class="fa-solid fa-chart-pie"></i> Traffic Channels</h3>
+                        <div class="chart-wrapper">
+                            <canvas id="sourcesChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Access Console Log Feed -->
+            <div class="terminal-log-card">
+                <div class="terminal-log-header">
+                    <div class="terminal-title-container">
+                        <i class="fa-solid fa-terminal"></i>
+                        <span>live_visitor_access_stream.log</span>
+                    </div>
+                    <div class="terminal-log-actions">
+                        <button class="btn-terminal-control" id="btn-toggle-log"><i class="fa-solid fa-pause"></i> Pause Feed</button>
+                        <button class="btn-terminal-control" id="btn-clear-log"><i class="fa-solid fa-trash-can"></i> Clear Screen</button>
+                    </div>
+                </div>
+                <div class="terminal-body" id="terminal-feed">
+                    <!-- Real-time logs appended here by admin.js -->
+                </div>
+            </div>
+
+            <!-- System Settings Panel -->
+            <div class="settings-section">
+                <div class="settings-card glass-card">
+                    <h3 style="font-family:var(--font-title);font-size:1.15rem;margin-bottom:1rem;border-bottom:1px solid var(--border-color);padding-bottom:0.8rem;">
+                        <i class="fa-solid fa-gears" style="color:var(--color-yellow);margin-right:0.5rem;"></i> System Controls
+                    </h3>
+                    <div class="settings-grid">
+                        <button class="btn btn-secondary" id="btn-simulate-visit" title="Simulate a new visitor loading the page">
+                            <i class="fa-solid fa-plus-circle"></i> Trigger Mock Visit
+                        </button>
+                        <button class="btn btn-secondary" id="btn-export-data" title="Export database to JSON file format">
+                            <i class="fa-solid fa-file-export"></i> Export JSON logs
+                        </button>
+                        <button class="btn btn-danger" id="btn-reset-counter" title="Reset visitor counter back to zero">
+                            <i class="fa-solid fa-triangle-exclamation"></i> Reset Counter
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Script File -->
+    <script src="admin.js"></script>
+</body>
+
+</html>

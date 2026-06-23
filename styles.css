@@ -1353,6 +1353,22 @@ button {
     text-align: center;
 }
 
+.admin-portal-link {
+    color: var(--text-muted);
+    font-weight: 500;
+    margin-left: 0.4rem;
+    transition: var(--transition-smooth);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.admin-portal-link:hover {
+    color: var(--color-ai);
+    text-shadow: 0 0 8px var(--color-ai-glow);
+}
+
+
 .footer-container {
     display: flex;
     justify-content: space-between;

@@ -817,4 +817,85 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     }
+
+    // --- 10. VISITOR COUNTER TRACKING ---
+    function trackVisitor() {
+        const namespace = "son-hoang-xuan-portfolio";
+        const key = "visits";
+        const sessionKey = "visited_session";
+        const localFallbackKey = "portfolio_fallback_visits";
+        
+        const getLocalFallbackCount = () => {
+            let count = localStorage.getItem(localFallbackKey);
+            if (!count) {
+                count = Math.floor(Math.random() * 50) + 120;
+                localStorage.setItem(localFallbackKey, count);
+            }
+            return parseInt(count, 10);
+        };
+        
+        const incrementLocalFallbackCount = () => {
+            const current = getLocalFallbackCount();
+            const next = current + 1;
+            localStorage.setItem(localFallbackKey, next);
+            return next;
+        };
+
+        const isNewSession = !sessionStorage.getItem(sessionKey);
+        
+        if (isNewSession) {
+            fetch(`https://api.counterapi.dev/v1/${namespace}/${key}/up`)
+                .then(response => {
+                    if (!response.ok) throw new Error("API response error");
+                    return response.json();
+                })
+                .then(data => {
+                    if (data && typeof data.count === "number") {
+                        localStorage.setItem("portfolio_last_count", data.count);
+                        sessionStorage.setItem(sessionKey, "true");
+                        console.log(`[Visitor Counter] Recorded visit. Count: ${data.count}`);
+                    } else {
+                        throw new Error("Invalid count format");
+                    }
+                })
+                .catch(err => {
+                    console.warn("[Visitor Counter] API failed, using fallback. Error:", err);
+                    const newCount = incrementLocalFallbackCount();
+                    localStorage.setItem("portfolio_last_count", newCount);
+                    sessionStorage.setItem(sessionKey, "true");
+                });
+        } else {
+            fetch(`https://api.counterapi.dev/v1/${namespace}/${key}`)
+                .then(response => {
+                    if (!response.ok) throw new Error("API response error");
+                    return response.json();
+                })
+                .then(data => {
+                    if (data && typeof data.count === "number") {
+                        localStorage.setItem("portfolio_last_count", data.count);
+                        console.log(`[Visitor Counter] Current count: ${data.count}`);
+                    }
+                })
+                .catch(err => {
+                    console.warn("[Visitor Counter] API fetch failed, using fallback. Error:", err);
+                    const currentCount = getLocalFallbackCount();
+                    localStorage.setItem("portfolio_last_count", currentCount);
+                });
+    }
+    trackVisitor();
+
+    // --- 11. SECRET KEYSTROKE TRIGGER FOR ADMIN ---
+    let keyBuffer = "";
+    document.addEventListener("keydown", (e) => {
+        if (e.key.length === 1) {
+            keyBuffer += e.key.toLowerCase();
+            if (keyBuffer.endsWith("admin")) {
+                window.location.href = "admin.html";
+            }
+            if (keyBuffer.length > 20) {
+                keyBuffer = keyBuffer.substring(keyBuffer.length - 10);
+            }
+        }
+    });
 });
+

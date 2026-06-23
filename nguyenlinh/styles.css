@@ -1,0 +1,49 @@
+:root {
+    --bg-dark-1: #030107;
+    --bg-dark-2: #0b020e;
+    --neon-glow: rgba(255, 30, 90, 0.4);
+}
+
+/* Reset & Basic Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background: radial-gradient(circle at center, var(--bg-dark-2) 0%, var(--bg-dark-1) 100%);
+    position: relative;
+}
+
+/* Canvas Styling */
+#heart-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    cursor: grab;
+}
+
+#heart-canvas:active {
+    cursor: grabbing;
+}
+
+/* Ambient Background Radial Glow */
+.ambient-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70vw;
+    height: 70vh;
+    background: radial-gradient(circle, var(--neon-glow) 0%, rgba(0, 0, 0, 0) 70%);
+    z-index: 0;
+    pointer-events: none;
+    filter: blur(80px);
+}
