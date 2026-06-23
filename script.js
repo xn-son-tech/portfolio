@@ -1,4 +1,5 @@
-document.addEventListener("DOMContentLoaded", () => {
+function initPortfolio() {
+    try {
     // --- 1. PARTICLES CANVAS BACKGROUND ---
     const canvas = document.getElementById("particles-canvas");
     const ctx = canvas.getContext("2d");
@@ -147,16 +148,25 @@ document.addEventListener("DOMContentLoaded", () => {
     const filterButtons = document.querySelectorAll(".filter-btn");
     let allProjects = [];
 
+    console.log("[Projects] Starting fetch of projects.json...");
+    console.log("[Projects] projectsContainer element:", projectsContainer);
+
     // Fetch projects.json
     fetch("projects.json")
-        .then((response) => response.json())
+        .then((response) => {
+            console.log("[Projects] Fetch response status:", response.status);
+            return response.json();
+        })
         .then((data) => {
+            console.log("[Projects] Parse successful, data length:", data.length);
             allProjects = data;
             renderProjects("all");
         })
         .catch((error) => {
-            console.error("Error loading projects:", error);
-            projectsContainer.innerHTML = `<p style="font-family:var(--font-mono);color:var(--color-red)">[ERROR] Failed to load projects.json database.</p>`;
+            console.error("[Projects] Error loading projects:", error);
+            if (projectsContainer) {
+                projectsContainer.innerHTML = `<p style="font-family:var(--font-mono);color:var(--color-red)">[ERROR] Failed to load projects.json database.</p>`;
+            }
         });
 
     // Bind Filter Click Events
@@ -178,10 +188,16 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     function renderProjects(filter) {
+        console.log("[Projects] renderProjects called with filter:", filter);
+        if (!projectsContainer) {
+            console.error("[Projects] Cannot render projects because projectsContainer is null!");
+            return;
+        }
         projectsContainer.innerHTML = "";
 
         // Filter all projects
         const filtered = filter === "all" ? allProjects : allProjects.filter((p) => p.filterType === filter);
+        console.log("[Projects] Filtered projects count:", filtered.length);
 
         // Grouping logic
         const groups = {
@@ -881,8 +897,10 @@ document.addEventListener("DOMContentLoaded", () => {
                     const currentCount = getLocalFallbackCount();
                     localStorage.setItem("portfolio_last_count", currentCount);
                 });
-    }
+        }  // ← close else block
+    }  // ← close trackVisitor function
     trackVisitor();
+
 
     // --- 11. SECRET KEYSTROKE TRIGGER FOR ADMIN ---
     let keyBuffer = "";
@@ -897,5 +915,24 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }
     });
-});
+    } catch (e) {
+        console.error("CRITICAL ERROR IN SCRIPT.JS:", e);
+        const errorDiv = document.createElement("div");
+        errorDiv.style.position = "fixed";
+        errorDiv.style.top = "0";
+        errorDiv.style.left = "0";
+        errorDiv.style.background = "red";
+        errorDiv.style.color = "white";
+        errorDiv.style.zIndex = "99999";
+        errorDiv.style.padding = "20px";
+        errorDiv.innerText = "Error: " + e.message + "\nStack: " + e.stack;
+        document.body.appendChild(errorDiv);
+    }
+}
+
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initPortfolio);
+} else {
+    initPortfolio();
+}
 

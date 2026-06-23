@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", () => {
+function initAdmin() {
     // --- 1. PARTICLES CANVAS BACKGROUND ---
     const canvas = document.getElementById("particles-canvas");
     const ctx = canvas.getContext("2d");
@@ -443,4 +443,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
         }
     });
-});
+}
+
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initAdmin);
+} else {
+    initAdmin();
+}

@@ -521,7 +521,29 @@
     </div>
 
     <!-- Script file -->
-    <script src="script.js"></script>
+    <script src="script.js?v=1.0.2"></script>
+    <script>
+        console.log("Inline test script executed!");
+        function initTest() {
+            console.log("DOMContentLoaded from inline script");
+            const testDiv = document.createElement("div");
+            testDiv.id = "test-js-indicator";
+            testDiv.style.position = "fixed";
+            testDiv.style.bottom = "0";
+            testDiv.style.right = "0";
+            testDiv.style.background = "green";
+            testDiv.style.color = "white";
+            testDiv.style.zIndex = "99999";
+            testDiv.style.padding = "10px";
+            testDiv.innerText = "JS ACTIVE";
+            document.body.appendChild(testDiv);
+        }
+        if (document.readyState === "loading") {
+            document.addEventListener("DOMContentLoaded", initTest);
+        } else {
+            initTest();
+        }
+    </script>
 </body>
 
 </html>
